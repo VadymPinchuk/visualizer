@@ -9,34 +9,37 @@ class MergeSortWidget extends StatelessWidget {
         margin: const EdgeInsets.all(8.0),
         elevation: 2.0,
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12.0))),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Merge sort',
-              style: TextStyle(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 10),
-            Consumer<MergeSort>(
-              builder: (context, state, _) => Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: _buildArrayWidgets(
-                  state.array,
-                  state.left,
-                  state.right,
-                  state.sorted,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'Merge sort',
+                style: TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              Consumer<MergeSort>(
+                builder: (context, state, _) => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: _buildArrayWidgets(
+                    state.array,
+                    state.left,
+                    state.right,
+                    state.sorted,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            const Text(
-              'Average O(n*log(n)) time, O(n) space',
-              style: TextStyle(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-          ],
+              const SizedBox(height: 10),
+              const Text(
+                'Average O(n*log(n)) time, O(n) space',
+                style: TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       );
 
