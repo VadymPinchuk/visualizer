@@ -4,8 +4,10 @@ import 'package:visualizer/bubble/bubble_sort.dart';
 import 'package:visualizer/bubble/bubble_sort_widget.dart';
 import 'package:visualizer/insertion/insertion_sort.dart';
 import 'package:visualizer/insertion/insertion_sort_widget.dart';
+import 'package:visualizer/merge/merge_sort.dart';
 import 'package:visualizer/selection/selection_sort.dart';
 import 'package:visualizer/selection/selection_sort_widget.dart';
+import 'package:visualizer/theme/theme_config.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,19 +18,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsApp.debugAllowBannerOverride = false;
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<SelectionSort>(create: (_) => SelectionSort()),
-          ChangeNotifierProvider<BubbleSort>(create: (_) => BubbleSort()),
-          ChangeNotifierProvider<InsertionSort>(create: (_) => InsertionSort()),
-        ],
-        child: MyHomePage(title: 'Sorting visualizer'),
+    return ChangeNotifierProvider(
+      create: (_) => ThemeConfig(),
+      child: Consumer<ThemeConfig>(
+        builder: (context, config, _) => MaterialApp(
+          title: 'Sorting visualizer',
+          theme: config.theme,
+          home: MultiProvider(
+            providers: [
+              ChangeNotifierProvider<MergeSort>(create: (_) => MergeSort()),
+              ChangeNotifierProvider<SelectionSort>(create: (_) => SelectionSort()),
+              ChangeNotifierProvider<BubbleSort>(create: (_) => BubbleSort()),
+              ChangeNotifierProvider<InsertionSort>(create: (_) => InsertionSort()),
+            ],
+            child: MyHomePage(title: 'Sorting visualizer'),
+          ),
+        ),
       ),
     );
   }
@@ -48,6 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.brightness_6),
+              onPressed: Provider.of<ThemeConfig>(context, listen: false).changeTheme,
+            )
+          ],
         ),
         body: Column(
           children: [
