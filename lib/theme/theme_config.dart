@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeConfig with ChangeNotifier {
   ThemeConfig() {
-    theme = light;
+    _initialConfig();
   }
 
   ThemeData theme;
@@ -12,8 +13,20 @@ class ThemeConfig with ChangeNotifier {
 
   static ThemeData get dark => ThemeData.dark().copyWith(visualDensity: VisualDensity.adaptivePlatformDensity);
 
-  void changeTheme() {
+  Future changeTheme() async {
     theme = theme == light ? dark : light;
+    await _saveThemeChanges();
     notifyListeners();
+  }
+
+  Future _initialConfig() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final bool isDark = prefs.getBool('isDark') ?? false;
+    theme = isDark ? dark : light;
+    notifyListeners();
+  }
+
+  Future _saveThemeChanges() async {
+    await SharedPreferences.getInstance().then((prefs) => prefs.setBool('isDark', theme == dark));
   }
 }
