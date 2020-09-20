@@ -95,8 +95,10 @@ class SortHolder extends ChangeNotifier {
   Future _initialConfig() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     final List<String> list = prefs.getStringList('sortingTypes');
-    _parseList(list);
-    notifyListeners();
+    if (list != null) {
+      _parseList(list);
+      notifyListeners();
+    }
   }
 
   Future _saveSelection() async {

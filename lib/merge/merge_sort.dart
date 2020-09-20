@@ -22,6 +22,7 @@ class MergeSort extends BaseSort {
     isSorting = true;
     final List<double> copy = List<double>.from(array);
     await _mergeSort(array, 0, array.length - 1, copy);
+    if (!isSorting) return;
     sorted = 0;
     left = -1;
     right = -1;
@@ -44,6 +45,7 @@ class MergeSort extends BaseSort {
     int counter = start;
     notifyListeners();
     while (left <= mid && right <= end) {
+      if (!isSorting) return;
       if (copy[left] < copy[right]) {
         main[counter++] = copy[left++];
       } else {
@@ -53,11 +55,13 @@ class MergeSort extends BaseSort {
       await sleep();
     }
     while (left <= mid) {
+      if (!isSorting) return;
       main[counter++] = copy[left++];
       notifyListeners();
       await sleep();
     }
     while (right <= end) {
+      if (!isSorting) return;
       main[counter++] = copy[right++];
       notifyListeners();
       await sleep();
