@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:visualizer/bubble/bubble_sort.dart';
 import 'package:visualizer/bubble/bubble_sort_widget.dart';
 import 'package:visualizer/insertion/insertion_sort.dart';
@@ -12,7 +13,9 @@ import 'package:visualizer/selection/selection_sort_widget.dart';
 enum Sorting { Merge, Insertion, Selection, Bubble }
 
 class SortHolder extends ChangeNotifier {
-  SortHolder() : super();
+  SortHolder() {
+    _initialConfig();
+  }
 
   final _sortingSet = <Sorting>{};
 
@@ -20,13 +23,14 @@ class SortHolder extends ChangeNotifier {
 
   bool contains(Sorting type) => sortingSet.contains(type);
 
-  void switchSorting(Sorting type) {
+  Future switchSorting(Sorting type) async {
     if (_sortingSet.contains(type)) {
       _sortingSet.remove(type);
     } else {
       _sortingSet.add(type);
     }
     notifyListeners();
+    await _saveSelection();
   }
 
   List<Widget> generateWidgets(BuildContext context) {
@@ -85,6 +89,25 @@ class SortHolder extends ChangeNotifier {
           Provider.of<SelectionSort>(context, listen: false).startSorting();
           break;
       }
+    }
+  }
+
+  Future _initialConfig() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final List<String> list = prefs.getStringList('sortingTypes');
+    _parseList(list);
+    notifyListeners();
+  }
+
+  Future _saveSelection() async {
+    await SharedPreferences.getInstance().then((prefs) => prefs.setStringList('sortingTypes', _toList()));
+  }
+
+  List<String> _toList() => _sortingSet.map((e) => e.index.toString()).toList();
+
+  void _parseList(List<String> list) {
+    for (final String each in list) {
+      _sortingSet.add(Sorting.values[int.tryParse(each)]);
     }
   }
 }

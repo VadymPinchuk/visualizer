@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:visualizer/holder/sort_holder.dart';
 import 'package:visualizer/options_drawer.dart';
+import 'package:visualizer/strings.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({Key key, this.title}) : super(key: key);
@@ -33,10 +34,21 @@ class _ListPageState extends State<ListPage> {
         ),
         drawer: OptionsDrawer(),
         body: Consumer<SortHolder>(
-          builder: (context, types, _) => ListView(
-            padding: const EdgeInsets.all(8),
-            children: types.generateWidgets(context),
-          ),
+          builder: (context, types, _) {
+            final List<Widget> widgets = types.generateWidgets(context);
+            return widgets.isEmpty
+                ? Center(
+                    child: Text(
+                      '$DRAWER_TITLE\n\n$EMPTY_MESSAGE',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 18.0),
+                    ),
+                  )
+                : ListView(
+                    padding: const EdgeInsets.all(8),
+                    children: widgets,
+                  );
+          },
         ),
       );
 }
