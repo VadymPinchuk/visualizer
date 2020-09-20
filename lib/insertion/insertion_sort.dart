@@ -13,7 +13,7 @@ class InsertionSort extends BaseSort {
   }
 
   @override
-  Future performSorting() async {
+  Future startSorting() async {
     isSorting = true;
     prev = 0;
     curr = 1;
@@ -22,7 +22,6 @@ class InsertionSort extends BaseSort {
       curr = i;
       notifyListeners();
       while (isSorting && prev >= 0 && array[curr] < array[prev]) {
-        breakSortingCondition();
         notifyListeners();
         final double tmp = array[prev];
         array[prev] = array[curr];
@@ -31,6 +30,9 @@ class InsertionSort extends BaseSort {
         prev--;
         notifyListeners();
         await sleep();
+      }
+      if (!isSorting) {
+        return;
       }
     }
     sorted = 0;

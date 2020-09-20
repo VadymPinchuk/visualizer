@@ -18,7 +18,7 @@ class MergeSort extends BaseSort {
   }
 
   @override
-  Future performSorting() async {
+  Future startSorting() async {
     isSorting = true;
     final List<double> copy = List<double>.from(array);
     await _mergeSort(array, 0, array.length - 1, copy);

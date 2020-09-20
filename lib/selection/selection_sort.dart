@@ -11,11 +11,12 @@ class SelectionSort extends BaseSort {
   void generateData() {
     super.generateData();
     sorted = -1;
+    next = -1;
     notifyListeners();
   }
 
   @override
-  Future performSorting() async {
+  Future startSorting() async {
     isSorting = true;
     prev = 0;
     curr = 0;
@@ -24,7 +25,9 @@ class SelectionSort extends BaseSort {
       prev = i;
       curr = i;
       for (next = i + 1; next < array.length; next++) {
-        breakSortingCondition();
+        if (!isSorting) {
+          return;
+        }
         if (array[next] < array[curr]) {
           curr = next;
         }

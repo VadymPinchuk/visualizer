@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:visualizer/merge/merge_sort.dart';
+import 'package:visualizer/strings.dart';
 
 class MergeSortWidget extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class MergeSortWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                'Merge sort',
+                MERGE_SORT,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),

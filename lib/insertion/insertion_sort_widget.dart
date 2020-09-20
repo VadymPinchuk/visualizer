@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:visualizer/insertion/insertion_sort.dart';
+import 'package:visualizer/strings.dart';
 
 class InsertionSortWidget extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class InsertionSortWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                'Insertion sort',
+                INSERTION_SORT,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),

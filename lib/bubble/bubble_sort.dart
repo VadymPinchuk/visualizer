@@ -11,14 +11,16 @@ class BubbleSort extends BaseSort {
   }
 
   @override
-  Future performSorting() async {
+  Future startSorting() async {
     bool isChanged = true;
     int counter = 0;
     isSorting = true;
     while (isSorting && isChanged) {
       isChanged = false;
       for (int i = 0; i < array.length - 1 - counter; i++) {
-        breakSortingCondition();
+        if (!isSorting) {
+          return;
+        }
         prev = i;
         curr = i + 1;
         notifyListeners();

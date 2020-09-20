@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:visualizer/selection/selection_sort.dart';
+import 'package:visualizer/strings.dart';
 
 class SelectionSortWidget extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class SelectionSortWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                'Selection sort',
+                SELECTION_SORT,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:visualizer/bubble/bubble_sort.dart';
+import 'package:visualizer/strings.dart';
 
 class BubbleSortWidget extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class BubbleSortWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                'Bubble sort',
+                BUBBLE_SORT,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),

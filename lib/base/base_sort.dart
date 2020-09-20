@@ -30,15 +30,9 @@ class BaseSort with ChangeNotifier {
     }
   }
 
-  Future performSorting() async {}
+  Future startSorting() async {}
 
   Future sleep() async {
     await Future.delayed(const Duration(milliseconds: 50), () {});
-  }
-
-  void breakSortingCondition() {
-    if (!isSorting) {
-      return;
-    }
   }
 }
