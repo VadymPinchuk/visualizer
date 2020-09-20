@@ -26,6 +26,7 @@ class SelectionSortWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: _buildArrayWidgets(
+                    Theme.of(context).accentColor,
                     state.array,
                     state.prev,
                     state.curr,
@@ -45,18 +46,20 @@ class SelectionSortWidget extends StatelessWidget {
         ),
       );
 
-  List<Widget> _buildArrayWidgets(List<double> array, int prev, int curr, int next, int sorted) => array
+  List<Widget> _buildArrayWidgets(Color main, List<double> array, int prev, int curr, int next, int sorted) => array
       .map(
         (e) => Container(
           width: 4,
           height: e,
           margin: const EdgeInsets.all(1),
-          color: _indexColor(array.indexOf(e), prev, curr, next, sorted),
+          color: _indexColor(main, array.indexOf(e), prev, curr, next, sorted),
         ),
       )
       .toList();
 
-  Color _indexColor(int index, int prev, int curr, int next, int sorted) => index == prev
+  Color _indexColor(Color main, int index, int prev, int curr, int next, int sorted) => index == prev
       ? Colors.orange
-      : (index == curr ? Colors.red : (index == next ? Colors.yellow : (index <= sorted ? Colors.blue : Colors.cyan)));
+      : (index == curr
+          ? Colors.red
+          : (index == next ? Colors.yellow : (index <= sorted ? Colors.deepPurpleAccent : main)));
 }

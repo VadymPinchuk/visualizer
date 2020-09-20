@@ -26,6 +26,7 @@ class InsertionSortWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: _buildArrayWidgets(
+                    Theme.of(context).accentColor,
                     state.array,
                     state.prev,
                     state.curr,
@@ -44,14 +45,14 @@ class InsertionSortWidget extends StatelessWidget {
         ),
       );
 
-  List<Widget> _buildArrayWidgets(List<double> array, int prev, int curr, int sorted) => array
+  List<Widget> _buildArrayWidgets(Color main, List<double> array, int prev, int curr, int sorted) => array
       .map((e) => Container(
             width: 4,
             height: e,
             margin: const EdgeInsets.all(1),
             color: array.indexOf(e) == prev
                 ? Colors.orange
-                : (array.indexOf(e) == curr ? Colors.red : (array.indexOf(e) >= sorted ? Colors.blue : Colors.cyan)),
+                : (array.indexOf(e) == curr ? Colors.red : (array.indexOf(e) >= sorted ? Colors.lightBlue : main)),
           ))
       .toList();
 }
