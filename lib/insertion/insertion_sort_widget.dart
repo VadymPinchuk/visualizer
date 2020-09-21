@@ -49,12 +49,12 @@ class InsertionSortWidget extends StatelessWidget {
       .map((e) => Expanded(
             child: Container(
               height: e,
-              margin: const EdgeInsets.all(1),
+              margin: const EdgeInsets.all(1.3),
               color: array.indexOf(e) == prev
                   ? Colors.orange
                   : (array.indexOf(e) == curr
                       ? Colors.red
-                      : (array.indexOf(e) >= sorted ? Colors.blueAccent[700] : main)),
+                      : (array.indexOf(e) >= sorted ? Colors.redAccent[700] : main)),
             ),
           ))
       .toList();

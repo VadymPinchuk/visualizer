@@ -51,7 +51,7 @@ class SelectionSortWidget extends StatelessWidget {
         (e) => Expanded(
           child: Container(
             height: e,
-            margin: const EdgeInsets.all(1),
+            margin: const EdgeInsets.all(1.3),
             color: _indexColor(main, array.indexOf(e), prev, curr, next, sorted),
           ),
         ),

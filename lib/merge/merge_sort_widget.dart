@@ -49,7 +49,7 @@ class MergeSortWidget extends StatelessWidget {
       .map((e) => Expanded(
             child: Container(
               height: e,
-              margin: const EdgeInsets.all(1),
+              margin: const EdgeInsets.all(1.3),
               color: array.indexOf(e) == curr
                   ? Colors.orange
                   : (array.indexOf(e) == next ? Colors.red : (array.indexOf(e) >= sorted ? Colors.pinkAccent : main)),
