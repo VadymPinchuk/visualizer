@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:visualizer/bubble/bubble_sort.dart';
 import 'package:visualizer/bubble/bubble_sort_widget.dart';
+import 'package:visualizer/heap/heap_sort.dart';
+import 'package:visualizer/heap/heap_sort_widget.dart';
 import 'package:visualizer/insertion/insertion_sort.dart';
 import 'package:visualizer/insertion/insertion_sort_widget.dart';
 import 'package:visualizer/merge/merge_sort.dart';
@@ -10,7 +12,7 @@ import 'package:visualizer/merge/merge_sort_widget.dart';
 import 'package:visualizer/selection/selection_sort.dart';
 import 'package:visualizer/selection/selection_sort_widget.dart';
 
-enum Sorting { Merge, Insertion, Selection, Bubble }
+enum Sorting { Merge, Heap, Insertion, Selection, Bubble }
 
 class SortHolder extends ChangeNotifier {
   SortHolder() {
@@ -40,6 +42,9 @@ class SortHolder extends ChangeNotifier {
         case Sorting.Merge:
           list.add(MergeSortWidget());
           break;
+        case Sorting.Heap:
+          list.add(HeapSortWidget());
+          break;
         case Sorting.Bubble:
           list.add(BubbleSortWidget());
           break;
@@ -60,6 +65,9 @@ class SortHolder extends ChangeNotifier {
         case Sorting.Merge:
           Provider.of<MergeSort>(context, listen: false).generateData();
           break;
+        case Sorting.Heap:
+          Provider.of<HeapSort>(context, listen: false).generateData();
+          break;
         case Sorting.Bubble:
           Provider.of<BubbleSort>(context, listen: false).generateData();
           break;
@@ -78,6 +86,9 @@ class SortHolder extends ChangeNotifier {
       switch (type) {
         case Sorting.Merge:
           Provider.of<MergeSort>(context, listen: false).startSorting();
+          break;
+        case Sorting.Heap:
+          Provider.of<HeapSort>(context, listen: false).startSorting();
           break;
         case Sorting.Bubble:
           Provider.of<BubbleSort>(context, listen: false).startSorting();

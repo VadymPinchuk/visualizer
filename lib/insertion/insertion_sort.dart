@@ -14,6 +14,8 @@ class InsertionSort extends BaseSort {
 
   @override
   Future startSorting() async {
+    if (isSorting) return;
+
     isSorting = true;
     prev = 0;
     curr = 1;

@@ -32,6 +32,12 @@ class OptionsDrawer extends StatelessWidget {
                     onChanged: (_) => types.switchSorting(Sorting.Merge),
                   ),
                   CheckboxListTile(
+                    title: const Text(HEAP_SORT),
+                    secondary: const Icon(Icons.fast_forward),
+                    value: types.contains(Sorting.Heap),
+                    onChanged: (_) => types.switchSorting(Sorting.Heap),
+                  ),
+                  CheckboxListTile(
                     title: const Text(BUBBLE_SORT),
                     secondary: const Icon(Icons.play_arrow),
                     value: types.contains(Sorting.Bubble),

@@ -12,6 +12,8 @@ class BubbleSort extends BaseSort {
 
   @override
   Future startSorting() async {
+    if (isSorting) return;
+
     bool isChanged = true;
     int counter = 0;
     isSorting = true;

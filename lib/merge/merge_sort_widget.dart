@@ -36,7 +36,7 @@ class MergeSortWidget extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                'Average O(n*log(n)) time, O(n) space',
+                'Time: O(n*log(n))  Space: O(n)',
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -46,13 +46,14 @@ class MergeSortWidget extends StatelessWidget {
       );
 
   List<Widget> _buildArrayWidgets(Color main, List<double> array, int curr, int next, int sorted) => array
-      .map((e) => Container(
-            width: 4,
-            height: e,
-            margin: const EdgeInsets.all(1),
-            color: array.indexOf(e) == curr
-                ? Colors.orange
-                : (array.indexOf(e) == next ? Colors.red : (array.indexOf(e) >= sorted ? Colors.pinkAccent : main)),
+      .map((e) => Expanded(
+            child: Container(
+              height: e,
+              margin: const EdgeInsets.all(1),
+              color: array.indexOf(e) == curr
+                  ? Colors.orange
+                  : (array.indexOf(e) == next ? Colors.red : (array.indexOf(e) >= sorted ? Colors.pinkAccent : main)),
+            ),
           ))
       .toList();
 }

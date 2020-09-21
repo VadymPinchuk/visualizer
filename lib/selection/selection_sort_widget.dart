@@ -48,11 +48,12 @@ class SelectionSortWidget extends StatelessWidget {
 
   List<Widget> _buildArrayWidgets(Color main, List<double> array, int prev, int curr, int next, int sorted) => array
       .map(
-        (e) => Container(
-          width: 4,
-          height: e,
-          margin: const EdgeInsets.all(1),
-          color: _indexColor(main, array.indexOf(e), prev, curr, next, sorted),
+        (e) => Expanded(
+          child: Container(
+            height: e,
+            margin: const EdgeInsets.all(1),
+            color: _indexColor(main, array.indexOf(e), prev, curr, next, sorted),
+          ),
         ),
       )
       .toList();
@@ -61,5 +62,5 @@ class SelectionSortWidget extends StatelessWidget {
       ? Colors.orange
       : (index == curr
           ? Colors.red
-          : (index == next ? Colors.yellow : (index <= sorted ? Colors.deepPurpleAccent : main)));
+          : (index == next ? Colors.yellow : (index <= sorted ? Colors.purpleAccent[700] : main)));
 }

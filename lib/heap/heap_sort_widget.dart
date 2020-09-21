@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:visualizer/bubble/bubble_sort.dart';
+import 'package:visualizer/heap/heap_sort.dart';
 import 'package:visualizer/strings.dart';
 
-class BubbleSortWidget extends StatelessWidget {
+class HeapSortWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Card(
         margin: const EdgeInsets.all(8.0),
@@ -16,12 +16,12 @@ class BubbleSortWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const Text(
-                BUBBLE_SORT,
+                HEAP_SORT,
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
-              Consumer<BubbleSort>(
+              Consumer<HeapSort>(
                 builder: (context, state, _) => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -36,7 +36,7 @@ class BubbleSortWidget extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                'Best O(n) Worst O(n^2) time',
+                'Time: O(n*log(n))  Space: O(1)',
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -49,12 +49,12 @@ class BubbleSortWidget extends StatelessWidget {
       .map((e) => Expanded(
             child: Container(
               height: e,
-              margin: const EdgeInsets.all(1),
+              margin: const EdgeInsets.all(1.3),
               color: array.indexOf(e) == prev
                   ? Colors.orange
                   : (array.indexOf(e) == curr
                       ? Colors.red
-                      : (array.indexOf(e) >= sorted ? Colors.greenAccent[700] : main)),
+                      : (array.indexOf(e) >= sorted ? Colors.indigoAccent[700] : main)),
             ),
           ))
       .toList();

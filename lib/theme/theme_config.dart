@@ -9,9 +9,17 @@ class ThemeConfig with ChangeNotifier {
 
   ThemeData theme;
 
-  static ThemeData get light => ThemeData.light().copyWith(visualDensity: VisualDensity.adaptivePlatformDensity);
+  static ThemeData get light => ThemeData.light().copyWith(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        accentColor: Colors.lightBlueAccent[400],
+        toggleableActiveColor: Colors.lightBlueAccent[400],
+      );
 
-  static ThemeData get dark => ThemeData.dark().copyWith(visualDensity: VisualDensity.adaptivePlatformDensity);
+  static ThemeData get dark => ThemeData.dark().copyWith(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        accentColor: Colors.tealAccent,
+        toggleableActiveColor: Colors.tealAccent,
+      );
 
   Future changeTheme() async {
     theme = theme == light ? dark : light;
