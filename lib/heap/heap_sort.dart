@@ -57,7 +57,7 @@ class HeapSort extends BaseSort {
   // O(1) operation
   Future swap(int i, int j) async {
     if (!isSorting) return;
-    final double tmp = array[i];
+    final int tmp = array[i];
     array[i] = array[j];
     array[j] = tmp;
     notifyListeners();

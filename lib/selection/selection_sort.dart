@@ -37,7 +37,7 @@ class SelectionSort extends BaseSort {
         await sleep();
       }
       if (prev != curr) {
-        final double tmp = array[prev];
+        final int tmp = array[prev];
         array[prev] = array[curr];
         array[curr] = tmp;
       }

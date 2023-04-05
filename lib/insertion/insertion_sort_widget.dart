@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +10,8 @@ class InsertionSortWidget extends StatelessWidget {
   Widget build(BuildContext context) => Card(
         margin: const EdgeInsets.all(8.0),
         elevation: 2.0,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12.0))),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(12.0))),
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -45,17 +47,24 @@ class InsertionSortWidget extends StatelessWidget {
         ),
       );
 
-  List<Widget> _buildArrayWidgets(Color main, List<double> array, int prev, int curr, int sorted) => array
-      .map((e) => Expanded(
-            child: Container(
-              height: e,
-              margin: const EdgeInsets.all(1.3),
-              color: array.indexOf(e) == prev
-                  ? Colors.orange
-                  : (array.indexOf(e) == curr
-                      ? Colors.red
-                      : (array.indexOf(e) >= sorted ? Colors.redAccent[700] : main)),
-            ),
-          ))
-      .toList();
+  List<Widget> _buildArrayWidgets(
+    Color main,
+    List<int> array,
+    int prev,
+    int curr,
+    int sorted,
+  ) =>
+      array
+          .mapIndexed((idx, value) => Expanded(
+                child: Container(
+                  height: value.toDouble(),
+                  margin: const EdgeInsets.all(1.3),
+                  color: idx == prev
+                      ? Colors.orange
+                      : (idx == curr
+                          ? Colors.red
+                          : (idx >= sorted ? Colors.redAccent[700] : main)),
+                ),
+              ))
+          .toList();
 }

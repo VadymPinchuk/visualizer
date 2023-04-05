@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:visualizer/bubble/bubble_sort.dart';
+import 'package:visualizer/config/config_holder.dart';
 import 'package:visualizer/heap/heap_sort.dart';
 import 'package:visualizer/holder/sort_holder.dart';
 import 'package:visualizer/insertion/insertion_sort.dart';
@@ -25,6 +26,7 @@ class SortingVisualApp extends StatelessWidget {
           theme: config.theme,
           home: MultiProvider(
             providers: [
+              ChangeNotifierProvider<ConfigHolder>(create: (_) => ConfigHolder()),
               ChangeNotifierProvider<SortHolder>(create: (_) => SortHolder()),
               ChangeNotifierProvider<MergeSort>(create: (_) => MergeSort()),
               ChangeNotifierProvider<HeapSort>(create: (_) => HeapSort()),

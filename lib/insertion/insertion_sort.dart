@@ -25,7 +25,7 @@ class InsertionSort extends BaseSort {
       notifyListeners();
       while (isSorting && prev >= 0 && array[curr] < array[prev]) {
         notifyListeners();
-        final double tmp = array[prev];
+        final int tmp = array[prev];
         array[prev] = array[curr];
         array[curr] = tmp;
         curr--;

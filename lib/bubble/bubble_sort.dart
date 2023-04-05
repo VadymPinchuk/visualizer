@@ -29,7 +29,7 @@ class BubbleSort extends BaseSort {
         if (array[prev] > array[curr]) {
           notifyListeners();
           isChanged = true;
-          final double tmp = array[prev];
+          final int tmp = array[prev];
           array[prev] = array[curr];
           array[curr] = tmp;
           await sleep();

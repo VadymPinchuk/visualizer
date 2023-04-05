@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:visualizer/config/config_holder.dart';
 import 'package:visualizer/holder/sort_holder.dart';
 import 'package:visualizer/strings.dart';
 import 'package:visualizer/theme/theme_config.dart';
@@ -19,7 +20,10 @@ class OptionsDrawer extends StatelessWidget {
                   DrawerHeader(
                     child: Text(
                       DRAWER_TITLE,
-                      style: Theme.of(context).accentTextTheme.bodyText1.copyWith(fontSize: 18.0),
+                      style: Theme.of(context)
+                          .accentTextTheme
+                          .bodyText1
+                          .copyWith(fontSize: 18.0),
                     ),
                     decoration: BoxDecoration(
                       color: Theme.of(context).accentColor,
@@ -61,6 +65,20 @@ class OptionsDrawer extends StatelessWidget {
           ),
           const Divider(
             height: 2.0,
+          ),
+          Consumer<ConfigHolder>(
+            builder: (context, config, _) => ListTile(
+              title:
+                  Text(config.showNumbers ? 'Numbers shown' : 'Numbers hidden'),
+              trailing: Switch(
+                value: config.showNumbers,
+                onChanged: (_) =>
+                  Provider.of<ConfigHolder>(context, listen: false)
+                      .switchNumberDisplaying(),
+              ),
+              onTap: Provider.of<ConfigHolder>(context, listen: false)
+                  .switchNumberDisplaying,
+            ),
           ),
           ListTile(
             title: const Text('Change theme'),

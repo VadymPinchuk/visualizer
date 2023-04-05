@@ -22,7 +22,7 @@ class MergeSort extends BaseSort {
     if (isSorting) return;
 
     isSorting = true;
-    final List<double> copy = List<double>.from(array);
+    final List<int> copy = List<int>.from(array);
     await _mergeSort(array, 0, array.length - 1, copy);
     if (!isSorting) return;
     sorted = 0;
@@ -31,7 +31,7 @@ class MergeSort extends BaseSort {
     notifyListeners();
   }
 
-  Future _mergeSort(List<double> main, int start, int end, List<double> copy) async {
+  Future _mergeSort(List<int> main, int start, int end, List<int> copy) async {
     if (!isSorting) return;
     if (start == end) return;
     final int mid = (start + end) ~/ 2;
@@ -40,7 +40,7 @@ class MergeSort extends BaseSort {
     await _merge(main, start, mid, end, copy);
   }
 
-  Future _merge(List<double> main, int start, int mid, int end, List<double> copy) async {
+  Future _merge(List<int> main, int start, int mid, int end, List<int> copy) async {
     if (!isSorting) return;
     left = start;
     right = mid + 1;

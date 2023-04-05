@@ -8,7 +8,8 @@ class BaseSort with ChangeNotifier {
     generateData();
   }
 
-  List<double> array = List<double>(50);
+  List<int> array = List.empty(growable: true);
+
   int prev = -1;
   int curr = -1;
   int sorted = -1;
@@ -16,6 +17,7 @@ class BaseSort with ChangeNotifier {
 
   @mustCallSuper
   void generateData() {
+    array.clear();
     isSorting = false;
     int counter = 0;
     final rand = Random();
@@ -24,7 +26,8 @@ class BaseSort with ChangeNotifier {
     sorted = -1;
 
     while (counter < 50) {
-      array[counter] = rand.nextDouble() * 100;
+      // to show anything in case of 0 -> shifting it to 1
+      array.add(rand.nextInt(100) + 1);
       counter++;
       notifyListeners();
     }
@@ -33,6 +36,6 @@ class BaseSort with ChangeNotifier {
   Future startSorting() async {}
 
   Future sleep() async {
-    await Future.delayed(const Duration(milliseconds: 50), () {});
+    await Future.delayed(const Duration(milliseconds: 200), () {});
   }
 }
