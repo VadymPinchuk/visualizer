@@ -5,14 +5,9 @@ import 'package:visualizer/base/base_sort.dart';
 class MergeSort extends BaseSort {
   MergeSort() : super();
 
-  int left = -1;
-  int right = -1;
-
   @override
   void generateData() {
     super.generateData();
-    left = -1;
-    right = -1;
     sorted = array.length;
     notifyListeners();
   }

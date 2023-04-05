@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:visualizer/holder/sort_holder.dart';
 import 'package:visualizer/options_drawer.dart';
@@ -22,12 +21,14 @@ class _ListPageState extends State<ListPage> {
           actions: [
             IconButton(
               icon: const Icon(Icons.sort),
-              onPressed: () => Provider.of<SortHolder>(context, listen: false).startSorting(context),
+              onPressed: () => Provider.of<SortHolder>(context, listen: false)
+                  .startSorting(context),
               tooltip: 'Sort',
             ),
             IconButton(
               icon: const Icon(Icons.shuffle),
-              onPressed: () => Provider.of<SortHolder>(context, listen: false).shuffleData(context),
+              onPressed: () => Provider.of<SortHolder>(context, listen: false)
+                  .shuffleData(context),
               tooltip: 'Shuffle',
             )
           ],
@@ -41,7 +42,10 @@ class _ListPageState extends State<ListPage> {
                     child: Text(
                       '$DRAWER_TITLE\n\n$EMPTY_MESSAGE',
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(fontSize: 18.0),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          .copyWith(fontSize: 18.0),
                     ),
                   )
                 : ListView(

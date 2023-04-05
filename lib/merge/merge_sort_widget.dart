@@ -1,10 +1,10 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:visualizer/base/base_sort_widget.dart';
 import 'package:visualizer/merge/merge_sort.dart';
 import 'package:visualizer/strings.dart';
 
-class MergeSortWidget extends StatelessWidget {
+class MergeSortWidget extends BaseSortWidget {
   @override
   Widget build(BuildContext context) => Card(
         margin: const EdgeInsets.all(8.0),
@@ -26,12 +26,12 @@ class MergeSortWidget extends StatelessWidget {
                 builder: (context, state, _) => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: _buildArrayWidgets(
-                    Theme.of(context).accentColor,
+                  children: buildItemsArray(
                     state.array,
                     state.left,
                     state.right,
                     state.sorted,
+                    Colors.pinkAccent,
                   ),
                 ),
               ),
@@ -45,25 +45,4 @@ class MergeSortWidget extends StatelessWidget {
           ),
         ),
       );
-
-  List<Widget> _buildArrayWidgets(
-    Color main,
-    List<int> array,
-    int curr,
-    int next,
-    int sorted,
-  ) =>
-      array
-          .mapIndexed((idx, value) => Expanded(
-                child: Container(
-                  height: value.toDouble(),
-                  margin: const EdgeInsets.all(1.3),
-                  color: idx == curr
-                      ? Colors.orange
-                      : (idx == next
-                          ? Colors.red
-                          : (idx >= sorted ? Colors.pinkAccent : main)),
-                ),
-              ))
-          .toList();
 }

@@ -1,11 +1,10 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:visualizer/base/base_sort_widget.dart';
 import 'package:visualizer/insertion/insertion_sort.dart';
 import 'package:visualizer/strings.dart';
 
-class InsertionSortWidget extends StatelessWidget {
+class InsertionSortWidget extends BaseSortWidget {
   @override
   Widget build(BuildContext context) => Card(
         margin: const EdgeInsets.all(8.0),
@@ -27,12 +26,12 @@ class InsertionSortWidget extends StatelessWidget {
                 builder: (context, state, _) => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.end,
-                  children: _buildArrayWidgets(
-                    Theme.of(context).accentColor,
+                  children: buildItemsArray(
                     state.array,
-                    state.prev,
-                    state.curr,
+                    state.left,
+                    state.right,
                     state.sorted,
+                    Colors.indigo,
                   ),
                 ),
               ),
@@ -46,25 +45,4 @@ class InsertionSortWidget extends StatelessWidget {
           ),
         ),
       );
-
-  List<Widget> _buildArrayWidgets(
-    Color main,
-    List<int> array,
-    int prev,
-    int curr,
-    int sorted,
-  ) =>
-      array
-          .mapIndexed((idx, value) => Expanded(
-                child: Container(
-                  height: value.toDouble(),
-                  margin: const EdgeInsets.all(1.3),
-                  color: idx == prev
-                      ? Colors.orange
-                      : (idx == curr
-                          ? Colors.red
-                          : (idx >= sorted ? Colors.redAccent[700] : main)),
-                ),
-              ))
-          .toList();
 }

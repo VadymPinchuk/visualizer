@@ -22,30 +22,30 @@ class HeapSort extends BaseSort {
     await buildMaxHeap();
 
     // start sorting
-    prev = 0;
+    left = 0;
     sorted = array.length;
     while (sorted > 0) {
       // interrupt when data changed
       if (!isSorting) return;
       sorted--;
-      await swap(prev, sorted);
-      await siftDown(prev, sorted);
+      await swap(left, sorted);
+      await siftDown(left, sorted);
     }
-    prev = -1;
-    curr = -1;
+    left = -1;
+    right = -1;
     notifyListeners();
   }
 
   // O(n) time to build
   Future buildMaxHeap() async {
     sorted = array.length;
-    prev = parentI(array.length - 1);
-    while (prev >= 0) {
-      await siftDown(prev, array.length);
-      prev--;
+    left = parentI(array.length - 1);
+    while (left >= 0) {
+      await siftDown(left, array.length);
+      left--;
     }
-    prev = -1;
-    curr = -1;
+    left = -1;
+    right = -1;
   }
 
   int parentI(int childI) => (childI - 1) ~/ 2;
@@ -73,13 +73,13 @@ class HeapSort extends BaseSort {
 
       final int chTwoI = childTI(start) < end ? childTI(start) : -1;
       if (chTwoI != -1 && array[chTwoI] > array[chOneI]) {
-        curr = chTwoI;
+        right = chTwoI;
       } else {
-        curr = chOneI;
+        right = chOneI;
       }
-      if (array[curr] > array[start]) {
-        await swap(start, curr);
-        start = curr;
+      if (array[right] > array[start]) {
+        await swap(start, right);
+        start = right;
         chOneI = childOI(start);
       } else {
         break;

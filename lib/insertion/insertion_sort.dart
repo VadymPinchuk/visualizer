@@ -17,19 +17,19 @@ class InsertionSort extends BaseSort {
     if (isSorting) return;
 
     isSorting = true;
-    prev = 0;
-    curr = 1;
+    left = 0;
+    right = 1;
     for (int i = 1; i < array.length; i++) {
-      prev = i - 1;
-      curr = i;
+      left = i - 1;
+      right = i;
       notifyListeners();
-      while (isSorting && prev >= 0 && array[curr] < array[prev]) {
+      while (isSorting && left >= 0 && array[right] < array[left]) {
         notifyListeners();
-        final int tmp = array[prev];
-        array[prev] = array[curr];
-        array[curr] = tmp;
-        curr--;
-        prev--;
+        final int tmp = array[left];
+        array[left] = array[right];
+        array[right] = tmp;
+        right--;
+        left--;
         notifyListeners();
         await sleep();
       }
@@ -38,8 +38,8 @@ class InsertionSort extends BaseSort {
       }
     }
     sorted = 0;
-    prev = -1;
-    curr = -1;
+    left = -1;
+    right = -1;
     notifyListeners();
   }
 }

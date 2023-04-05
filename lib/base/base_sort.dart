@@ -10,9 +10,10 @@ class BaseSort with ChangeNotifier {
 
   List<int> array = List.empty(growable: true);
 
-  int prev = -1;
-  int curr = -1;
+  int left = -1;
+  int right = -1;
   int sorted = -1;
+
   bool isSorting = false;
 
   @mustCallSuper
@@ -21,8 +22,8 @@ class BaseSort with ChangeNotifier {
     isSorting = false;
     int counter = 0;
     final rand = Random();
-    prev = -1;
-    curr = -1;
+    left = -1;
+    right = -1;
     sorted = -1;
 
     while (counter < 50) {
@@ -36,6 +37,6 @@ class BaseSort with ChangeNotifier {
   Future startSorting() async {}
 
   Future sleep() async {
-    await Future.delayed(const Duration(milliseconds: 200), () {});
+    await Future.delayed(const Duration(milliseconds: 100), () {});
   }
 }

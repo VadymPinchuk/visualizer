@@ -5,12 +5,12 @@ import 'package:visualizer/base/base_sort.dart';
 class SelectionSort extends BaseSort {
   SelectionSort() : super();
 
+  // next smallest value in front of sorted array
   int next = -1;
 
   @override
   void generateData() {
     super.generateData();
-    sorted = -1;
     next = -1;
     notifyListeners();
   }
@@ -20,34 +20,34 @@ class SelectionSort extends BaseSort {
     if (isSorting) return;
 
     isSorting = true;
-    prev = 0;
-    curr = 0;
+    left = 0;
+    right = 0;
 
     for (int i = 0; i < array.length - 1; i++) {
-      prev = i;
-      curr = i;
+      left = i;
+      right = i;
       for (next = i + 1; next < array.length; next++) {
         if (!isSorting) {
           return;
         }
-        if (array[next] < array[curr]) {
-          curr = next;
+        if (array[next] < array[right]) {
+          right = next;
         }
         notifyListeners();
         await sleep();
       }
-      if (prev != curr) {
-        final int tmp = array[prev];
-        array[prev] = array[curr];
-        array[curr] = tmp;
+      if (left != right) {
+        final int tmp = array[left];
+        array[left] = array[right];
+        array[right] = tmp;
       }
-      sorted = prev;
+      sorted = left;
       notifyListeners();
     }
 
     sorted = array.length;
-    prev = -1;
-    curr = -1;
+    left = -1;
+    right = -1;
     next = -1;
     notifyListeners();
   }

@@ -23,15 +23,15 @@ class BubbleSort extends BaseSort {
         if (!isSorting) {
           return;
         }
-        prev = i;
-        curr = i + 1;
+        left = i;
+        right = i + 1;
         notifyListeners();
-        if (array[prev] > array[curr]) {
+        if (array[left] > array[right]) {
           notifyListeners();
           isChanged = true;
-          final int tmp = array[prev];
-          array[prev] = array[curr];
-          array[curr] = tmp;
+          final int tmp = array[left];
+          array[left] = array[right];
+          array[right] = tmp;
           await sleep();
         }
       }
@@ -39,8 +39,8 @@ class BubbleSort extends BaseSort {
       counter++;
       notifyListeners();
     }
-    prev = -1;
-    curr = -1;
+    left = -1;
+    right = -1;
     sorted = 0;
     notifyListeners();
   }
