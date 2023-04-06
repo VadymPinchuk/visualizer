@@ -28,7 +28,7 @@ class BaseSort with ChangeNotifier {
 
     while (counter < 50) {
       // to show anything in case of 0 -> shifting it to 1
-      array.add(rand.nextInt(100) + 1);
+      array.add(rand.nextInt(99) + 1);
       counter++;
       notifyListeners();
     }
