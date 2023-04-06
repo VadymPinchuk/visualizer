@@ -6,6 +6,42 @@ import 'package:visualizer/theme/theme_config.dart';
 
 /// Basic widget configurations to be used in one place for simplicity
 abstract class BaseSortWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => Card(
+        margin: const EdgeInsets.all(8.0),
+        elevation: 2.0,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                algorithmName(),
+                style: const TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 10),
+              consumerWidget(),
+              const SizedBox(height: 10),
+              Text(
+                algorithmComplexity(),
+                style: const TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      );
+
+  String algorithmName();
+
+  Widget consumerWidget();
+
+  String algorithmComplexity();
+
   List<Widget> buildItemsArray(
     List<int> array,
     int left,

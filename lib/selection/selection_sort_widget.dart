@@ -8,48 +8,6 @@ import 'package:visualizer/strings.dart';
 import 'package:visualizer/theme/theme_config.dart';
 
 class SelectionSortWidget extends BaseSortWidget {
-  @override
-  Widget build(BuildContext context) => Card(
-        margin: const EdgeInsets.all(8.0),
-        elevation: 2.0,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12.0)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                SELECTION_SORT,
-                style: TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              Consumer<SelectionSort>(
-                builder: (context, state, _) => Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: _buildItemsArray(
-                    state.array,
-                    state.left,
-                    state.right,
-                    state.next,
-                    state.sorted,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Best O(n^2) Worst O(n^2) time',
-                style: TextStyle(fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-      );
-
   List<Widget> _buildItemsArray(
     List<int> array,
     int left,
@@ -98,6 +56,27 @@ class SelectionSortWidget extends BaseSortWidget {
                       : (idx <= sorted
                           ? Colors.blueGrey
                           : config.theme.colorScheme.secondary))),
+        ),
+      );
+
+  @override
+  String algorithmName() => SELECTION_SORT;
+
+  @override
+  String algorithmComplexity() => 'Best O(n^2) Worst O(n^2) time';
+
+  @override
+  Widget consumerWidget() => Consumer<SelectionSort>(
+        builder: (context, state, _) => Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: _buildItemsArray(
+            state.array,
+            state.left,
+            state.right,
+            state.next,
+            state.sorted,
+          ),
         ),
       );
 }
