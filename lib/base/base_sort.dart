@@ -37,6 +37,6 @@ class BaseSort with ChangeNotifier {
   Future startSorting() async {}
 
   Future sleep() async {
-    await Future.delayed(const Duration(milliseconds: 100), () {});
+    await Future.delayed(const Duration(milliseconds: 150), () {});
   }
 }
