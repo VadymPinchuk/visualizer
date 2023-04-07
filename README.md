@@ -13,4 +13,4 @@ Reach me out at LinkedIn: https://www.linkedin.com/in/vpinchuk/
 ## Articles
 Medium: https://medium.com/@vad.pinchuk/from-chaos-to-order-achieving-understanding-of-algorithms-through-visualisation-713e06baa7fd
 Dev.to: https://dev.to/vadympinchuk/from-chaos-to-order-achieving-understanding-of-algorithms-through-visualisation-81b
-HackerNoon: Soon ;)
+HackerNoon: https://hackernoon.com/from-chaos-to-order-achieving-understanding-of-algorithms-through-visualization
