@@ -8,7 +8,7 @@ import 'package:visualizer/theme/theme_config.dart';
 class OptionsDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.bodyLarge;
+    final TextStyle textStyle = Theme.of(context).textTheme.bodyLarge!;
     return Drawer(
       child: Column(
         children: [

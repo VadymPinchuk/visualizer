@@ -7,11 +7,17 @@ class ThemeConfig with ChangeNotifier {
     _initialConfig();
   }
 
-  ThemeData theme;
+  late ThemeData theme;
 
-  static ThemeData get light => ThemeData.light();
+  static ThemeData get light => ThemeData.light().copyWith(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        brightness: Brightness.light,
+      );
 
-  static ThemeData get dark => ThemeData.dark();
+  static ThemeData get dark => ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+        brightness: Brightness.dark,
+      );
 
   Future changeTheme() async {
     theme = theme == light ? dark : light;

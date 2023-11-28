@@ -78,11 +78,11 @@ abstract class BaseSortWidget extends StatelessWidget {
       Consumer<ThemeConfig>(
         builder: (context, config, _) => Text(
           value.toString(),
-          style: config.theme.textTheme.bodySmall.copyWith(
+          style: config.theme.textTheme.bodySmall!.copyWith(
               fontSize: 9,
               color: idx == left || idx == right
                   ? config.theme.colorScheme.secondary
-                  : config.theme.textTheme.bodySmall.color),
+                  : config.theme.textTheme.bodySmall!.color),
         ),
       );
 

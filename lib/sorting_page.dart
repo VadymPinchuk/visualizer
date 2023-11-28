@@ -5,7 +5,7 @@ import 'package:visualizer/options_drawer.dart';
 import 'package:visualizer/strings.dart';
 
 class ListPage extends StatefulWidget {
-  const ListPage({Key key, this.title}) : super(key: key);
+  const ListPage({super.key, required this.title});
 
   final String title;
 
@@ -44,7 +44,7 @@ class _ListPageState extends State<ListPage> {
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
-                          .bodyLarge
+                          .bodyLarge!
                           .copyWith(fontSize: 18.0),
                     ),
                   )

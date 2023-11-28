@@ -105,7 +105,7 @@ class SortHolder extends ChangeNotifier {
 
   Future _initialConfig() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final List<String> list = prefs.getStringList('sortingTypes');
+    final List<String>? list = prefs.getStringList('sortingTypes');
     if (list != null) {
       _parseList(list);
       notifyListeners();
@@ -120,7 +120,7 @@ class SortHolder extends ChangeNotifier {
 
   void _parseList(List<String> list) {
     for (final String each in list) {
-      _sortingSet.add(Sorting.values[int.tryParse(each)]);
+      _sortingSet.add(Sorting.values[int.tryParse(each) ?? 0]);
     }
   }
 }

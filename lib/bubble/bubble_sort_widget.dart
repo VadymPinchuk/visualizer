@@ -21,7 +21,7 @@ class BubbleSortWidget extends BaseSortWidget {
             state.left,
             state.right,
             state.sorted,
-            Colors.green[800],
+            Colors.green[800]!,
           ),
         ),
       );
